@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'carbona';
+  src: url('/CarbonaTest-MonoBold.otf');
+}
+
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+canvas {
+  display: block;
+}
+
+#dropzone{
+position: absolute;
+bottom: 10px;
+left: 10px;
+font-family: carbona ;
+font-size: 16pt;
+border-radius: 15px;
+/* border: none; */
+background-color: white;
+border-color: #000000;
+border-style: solid;
+padding: 10px 20px;
+stroke-width: 3px;
+}
+
+#dropzone:hover{
+  background-color: black;
+  color: white;
+}
+
