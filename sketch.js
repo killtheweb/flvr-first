@@ -5,7 +5,7 @@ let vid;
 let cnv;
 var resizeButton;
 
-let gradient = true;
+let gradient = false;
 let c1, c2;
 
 let pg;
