@@ -124,6 +124,6 @@ function resizeC(){
   resizeCanvas(1920,1080);
 }
 
-function mousePressed(){
-  gradient = !gradient;
-}
+// function mousePressed(){
+//   gradient = !gradient;
+// }
