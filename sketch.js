@@ -6,21 +6,23 @@ let cnv;
 var resizeButton;
 
 let gradient = false;
+let fxSwitch = 1;
 let c1, c2;
 
 let pg;
 
 function preload() {
   img = loadImage(string);
-  BOLDD = loadFont("CarbonaTest-MonoBold.otf");
+  BOLDD = loadFont("CarbonaTest-MonoBold.ttf");
+  
 }
 
 function setup() {
+  
   cnv = createCanvas(1080, 1080);
   cnv.parent(output);
-  pixelDensity(displayDensity);
+  pixelDensity(2);
   pg = createGraphics(1080,1080);
-
   c1 = color(11,11,11);
   c2 = color(200);
 
@@ -38,9 +40,14 @@ function setup() {
   resizeButton = select('#resizeButton');
   resizeButton.mousePressed(resizeC);
 
-  slid = createSlider(0,110,0);
+  slid = createSlider(0,102,0);
   slid.id('pixelP');
   // slid.position('400', '600');
+  
+  auto = createCheckbox('auto', true);
+  auto.id('autoCheck');
+  
+
 }
 
 function draw() {
@@ -63,13 +70,22 @@ function draw() {
     for (let y = 0; y < TILES_Y; y++) {
       let c = img.get(x, y), b = brightness(c), selector = int(map(b, 0, 100, 0, CHARS.length) - 1);
       pg.textFont(BOLDD);
-      // if (b < map(sin(radians(frameCount)),-1,1,0,122)) {
-        if (b < slid.value()) {
 
+if(fxSwitch == 1){
+      if(auto.checked()){
+        if (b < map(sin(radians(frameCount)),-1,1,0,102)) {
+          pg.fill(laranja);
+        } else {
+          pg.fill(cinza);
+        }
+      }else{
+        if (b < slid.value()) {
           pg.fill(laranja);
       } else {
         pg.fill(cinza);
       }
+    }
+    
       pg.push();
       pg.textSize(b / 12);
       pg.translate(x * TILE_W, y * TILE_H);
@@ -77,7 +93,9 @@ function draw() {
       pg.pop();
     }
   }
+  
   image(pg,0,0);
+}
 }
 
 
@@ -98,13 +116,6 @@ function keyPressed() {
     save(cnv, "flvr-mask.png");  }
 }
 
-
-function gotFile(file){
-  img = loadImage(file.data, () => {
-    img.resize(TILES_X, TILES_Y);
-  });
-}
-
 function gotFile(file) {
   if (file.type === 'image') {
     img = loadImage(file.data, () => {
@@ -119,6 +130,20 @@ function gotFile(file) {
     });
   }
 }
+
+
+function circle(){
+  for(let x = 0; x < frameCount; x++){
+    if (dist(mouseX,mouseY, x*TILE_W,y*TILE_H) < map(sin(radians(frameCount*4)),-1,1,-1000,1000)) {
+      pg.fill(laranja);
+    } else if(dist(mouseX,mouseY, x*TILE_W,y*TILE_H) < map(sin(radians(frameCount*8)),-1,1,-1000,1000)) {
+      pg.fill(cinza);
+    }else{
+      pg.fill(laranja);
+    }
+  }
+}
+
 
 function resizeC(){
   resizeCanvas(1920,1080);
