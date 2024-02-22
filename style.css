@@ -8,8 +8,6 @@ html, body {
   padding: 0;
 }
 
-
-
 #dropzone{
 position: absolute;
 bottom: 10px;
@@ -71,6 +69,17 @@ stroke-width: 3px;
   border-radius: 30px;
   background: #F84C01;
   /* outline: none; */
+}
+
+#autoCheck{
+-webkit-appearance: none;
+font-family: carbona;
+position: absolute;
+
+margin-left: 920px;
+margin-top: 653px;
+height: calc(100vh - 120px) ;
+max-height: calc(100vh - 120px) ;
 }
 
 #output {
